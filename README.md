@@ -1,1 +1,3 @@
-# Python_TelegremBot_Radygina
+Любовь Радыгина
+4adygina
+4adygina@gmail.com
