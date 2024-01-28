@@ -1,0 +1,57 @@
+import os.path
+
+# Создает заметку согласно полученным названию и тексту
+def build_note(note_text, note_name):
+    with open(f'{note_name}.txt', 'w', encoding='utf-8') as new_file:
+        new_file.write(note_text)
+    print(f'Заметка {note_name} успешно создана')
+
+
+# Получает текст заметки, приняв ее название
+def create_note(note_name):
+    note_text = str(input('Ведите текст заметки: '))
+    build_note(note_text, note_name)
+
+
+# Выдает текст заметки согласно ее названию
+def read_note(name):
+    if os.path.isfile(name) is True:
+        print(open(name, 'r', encoding='utf-8').read())
+    else:
+        print('Заметка не найдена')
+
+
+# Заменяет старый текст заметки на новый
+def edit_note(name):
+    if os.path.isfile(name) is True:
+        print('Старый текст заметки')
+        print(open(name, 'r', encoding='utf-8').read())
+        new_text = str(input('Ведите новый текст заметки: '))
+        with open(name, 'w', encoding='utf-8') as updated_file:
+            updated_file.write(new_text)
+    else:
+        print('Заметка не найдена')
+
+
+# Удаляет заметку
+def delete_note(name):
+    if os.path.isfile(name) is True:
+        os.remove(name)
+    else:
+        print('Заметка не найдена')
+
+ # Основная функция, объединяющая все ранее заданные функции
+def main():
+    action = str(input('Вы хотите создать, прочитать, обновить или удалить заметку? '))
+    note_name = str(input('Ведите название заметки: '))
+    name = f'{note_name}.txt'
+
+    if action == 'создать':
+        create_note(note_name)
+    elif action == 'прочитать':
+        read_note(name)
+    elif action == 'обновить':
+        edit_note(name)
+
+    else:
+        delete_note(name)
